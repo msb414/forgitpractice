@@ -1,0 +1,151 @@
+
+*******************************To Install Installation manager use below command **********************************
+
+
+
+./installc -sP -acceptLicense input /export/home/wasadmin/WAS8.5/InstalMgr1.6.2/install.xml
+
+
+
+***************************To Find Available packages use below command *****************
+
+Path: /opt/IBM/InstallationManager/eclipse/tools
+
+
+./imcl listAvailablePackages -repositories /export/home/wasadmin/WAS8.5
+
+
+******************************  To install WAS ND 8.5 use below command, but make sure about package name **********************************************
+
+
+./imcl install com.ibm.websphere.ND.v85_8.5.5000.20130514_1044 -repositories /export/home/wasadmin/WAS8.5  -installationDirectory "/opt/IBM/WebSphere/AppServer" -acceptLicense –sP
+
+
+
+
+********************************************** MaKE PROFILE	 IN 103 SERVER *******************************************************
+
+use below path :
+
+/opt/IBM/WebSphere/AppServer/bin
+
+
+./manageprofiles.sh -create -profileName Dmgr01 -profilePath /opt/IBM/WebSphere/AppServer/profiles/Dmgr01  -templatePath /opt/IBM/WebSphere/AppServer/profileTemplates/dmgr -serverType DEPLOYMENT_MANAGER -enableAdminSecurity true -adminUserName wasadmin -adminPassword W@sadm!n123$
+
+
+
+./manageprofiles.sh -create -profileName Appsrv01 -profilePath /opt/IBM/WebSphere/AppServer/profiles/Appsrv01  -templatePath /opt/IBM/WebSphere/AppServer/profileTemplates/default
+
+
+
+
+***********************************************************Federation*******************************************************************************************
+
+Login to 103 server:
+
+Path: /opt/IBM/WebSphere/AppServer/profiles/Appsrv01/bin
+
+
+Use below command:
+
+
+./addNode.sh 192.168.25.103 8879
+
+
+
+
+Same we have federate from 104 & 102 servers
+
+
+Login 104:
+
+
+Path:
+
+/opt/IBM/WebSphere/AppServer/profiles/Appsrv01/bin
+
+
+./addNode.sh 192.168.25.103 8879
+
+
+
+
+login 102:
+
+Path:
+
+/opt/IBM/WebSphere/AppServer/profiles/Appsrv01/bin
+
+
+./addNode.sh 192.168.25.103 8879
+
+
+
+
+************************************************* Fix pack **************************************
+Path: /opt/IBM/InstallationManager/eclipse/tools
+
+
+But make sure no java process is running before fix pack updation (Dmgr, nodeagent, Appserver is in stop condition)
+
+
+./imcl listAvailablePackages -repositories /export/home/wasadmin/WASfixpack8.5.5.5
+
+
+./imcl install com.ibm.websphere.ND.v85_8.5.5005.20150220_0158 -repositories /export/home/wasadmin/WASfixpack8.5.5.5 -installationDirectory "/opt/IBM/WebSphere/AppServer" -acceptLicense -sP
+
+
+*************************************************************************************************************************************************************
+
+
+
+
+
+*******************************************IHS**********************************
+
+To Install Insatallation manager use below command
+
+
+./installc -sP -acceptLicense input /export/home/wasadmin/IHS8.5/Install_Mgr_v1.6.2/install.xml
+
+
+
+******************************************To Install IHS 8.5.5 **********************
+
+
+
+./imcl listAvailablePackages -repositories /export/home/wasadmin/IHS8.5/
+
+
+
+./imcl install com.ibm.websphere.IHS.v85_8.5.5000.20130514_1044 -repositories /export/home/wasadmin/IHS8.5 -installationDirectory /opt/IBM/HTTPServer -properties user.ihs.httpPort=80 -acceptLicense -sP
+
+
+
+************************************to Install Plugin *****************************
+
+
+
+
+./imcl install com.ibm.websphere.PLG.v85_8.5.5000.20130514_1044 -repositories /export/home/wasadmin/IHS8.5  -installationDirectory /opt/WebSphere/Plugins  -acceptLicense -sP
+
+
+
+
+
+
+
+************************************** Fix PAck for IHS *******************
+
+
+
+
+./imcl listAvailablePackages -repositories /export/home/wasadmin/IHSfixpack8.5.5.5
+
+
+
+
+
+./imcl install com.ibm.websphere.IHS.v85_8.5.5005.20150220_0158 -repositories /export/home/wasadmin/IHSfixpack8.5.5.5 -installationDirectory "/opt/IBM/HTTPServer" -acceptLicense -sP
+
+./imcl install com.ibm.websphere.PLG.v85_8.5.5003.20140730_1249 -repositories /export/home/wasadmin/IHSfixpack8.5.5.5 -installationDirectory "/opt/WebSphere/Plugins" -acceptLicense -sP

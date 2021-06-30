@@ -1,0 +1,197 @@
+*******************************To Install Installation manager use below command **********************************
+
+
+
+./installc -sP -acceptLicense input /export/home/wasadmin/WAS8.5/InstalMgr1.6.2/install.xml
+
+
+
+***************************To Find Available packages use below command *****************
+
+Path: /opt/IBM/InstallationManager/eclipse/tools
+
+
+./imcl listAvailablePackages -repositories /backup/indas/IBM_binaries/IHS8.5/
+
+
+******************************  To install WAS ND 8.5 use below command, but make sure about package name **********************************************
+
+
+./imcl install com.ibm.websphere.ND.v85_8.5.5012.20170627_1018 -repositories /tmp/Fixpack8.5.5.12  -installationDirectory "/IBM/WebSphere/AppServer" -acceptLicense –sP
+
+
+
+
+********************************************** MaKE PROFILE	 IN 103 SERVER *******************************************************
+
+use below path :
+
+/opt/IBM/WebSphere/AppServer/bin
+
+
+./manageprofiles.sh -create -profileName Dmgr01 -profilePath /opt/IBM/WebSphere/AppServer/profiles/Dmgr01  -templatePath /opt/IBM/WebSphere/AppServer/profileTemplates/dmgr -serverType DEPLOYMENT_MANAGER -enableAdminSecurity true -adminUserName wasadmin -adminPassword W@sadm!n123$
+
+
+
+./manageprofiles.sh -create -profileName Appsrv01 -profilePath /opt/IBM/WebSphere/AppServer/profiles/Appsrv01  -templatePath /opt/IBM/WebSphere/AppServer/profileTemplates/default
+
+
+
+
+
+
+******************************************To Install IHS 8.5.5 **********************
+
+
+
+./imcl listAvailablePackages -repositories /backup/indas/IBM_binaries/IHS8.5/
+
+
+
+
+./imcl install com.ibm.websphere.IHS.v85_8.5.5000.20130514_1044 -repositories /backup/indas/IBM_binaries/IHS8.5/ -installationDirectory /backup/indas/IHS/Httpserver/ -properties user.ihs.httpPort=80 -acceptLicense -sP
+
+
+
+************************************to Install Plugin *****************************
+
+
+
+
+
+./imcl -acceptLicense -input /backup/indas/IHS/uninstall/uninstall.xml -log /tmp/uninstall.log
+
+
+./imcl install com.ibm.websphere.PLG.v85_8.5.5000.20130514_1044 -repositories /backup/indas/IBM_binaries/IHS8.5/  -installationDirectory /backup/indas/IHS/Plugins/  -acceptLicense -sP
+
+
+/backup/indas/IBM_binaries/IHS15/
+
+
+
+./imcl install com.ibm.websphere.IHS.v85_8.5.5015.20190128_1828 -repositories /backup/indas/IBM_binaries/IHS15/ -installationDirectory "/backup/indas/IHS/Httpserver/" -acceptLicense -sP
+
+
+
+ ./imcl install com.ibm.websphere.PLG.v85_8.5.5015.20190128_1828 -repositories /backup/indas/IBM_binaries/IHS15/ -installationDirectory "/backup/indas/IHS/Plugins//" -acceptLicense -sP
+
+
+
+wasadmin
+
+WasAdmin123$
+
+========================================================================================================================================
+
+
+*******************************To Install Installation manager use below command **********************************
+/backup/indas/IBM_binaries/WASND8.5
+/backup/indas/IBM_binaries/IM/tools
+/backup/indas/IBM_binaries/IHS8.5
+
+./imcl listAvailablePackages -repositories /backup/indas/IBM_binaries/IHS8.5
+root@ofsaa-appclient0102:/backup/indas/IBM_binaries/IM/tools# ./imcl listAvailablePackages -repositories /backup/indas/IBM_binaries/IHS8.5
+com.ibm.websphere.APPCLIENT.v85_8.5.5000.20130514_1044
+com.ibm.websphere.IHS.v85_8.5.5000.20130514_1044
+com.ibm.websphere.PLG.v85_8.5.5000.20130514_1044
+com.ibm.websphere.PLUGCLIENT.v85_8.5.5000.20130514_1044
+com.ibm.websphere.WCT.v85_8.5.5000.20130514_1044
+
+./imcl install com.ibm.websphere.IHS.v85_8.5.5000.20130514_1044 -repositories /backup/indas/IBM_binaries/IHS8.5/ -installationDirectory "/export/home/wasadmin/IHS/Httpserver/" -properties user.ihs.httpPort=80 -acceptLicense -sP
+
+root@ofsaa-appclient0102:/backup/indas/IBM_binaries/IM/tools# ./imcl install com.ibm.websphere.IHS.v85_8.5.5000.20130514_1044 -repositories /backup/indas/IBM_binaries/IHS8.5/ -installationDirectory "/export/home/wasadmin/IHS/Httpserver/" -properties user.ihs.httpPort=80 -acceptLicense -sP
+                 25%                50%                75%                100%
+------------------|------------------|------------------|------------------|
+............................................................................
+Installed com.ibm.websphere.IHS.v85_8.5.5000.20130514_1044 to the /export/home/wasadmin/IHS/Httpserver/ directory.
+
+./imcl install com.ibm.websphere.PLG.v85_8.5.5000.20130514_1044 -repositories /backup/indas/IBM_binaries/IHS8.5/  -installationDirectory "/export/home/wasadmin/IHS/Plugins/"  -acceptLicense -sP
+
+
+root@ofsaa-appclient0102:/backup/indas/IBM_binaries/IM/tools# ./imcl install com.ibm.websphere.PLG.v85_8.5.5000.20130514_1044 -repositories /backup/indas/IBM_binaries/IHS8.5/  -installationDirectory "/export/home/wasadmin/IHS/Plugins/"  -acceptLicense -sP
+                 25%                50%                75%                100%
+------------------|------------------|------------------|------------------|
+............................................................................
+Installed com.ibm.websphere.PLG.v85_8.5.5000.20130514_1044 to the /export/home/wasadmin/IHS/Plugins/ directory.
+
+root@ofsaa-appclient0102:/backup/indas/IBM_binaries/IM/tools# ./imcl listAvailablePackages -repositories /backup/indas/IBM_binaries/IHS15/
+com.ibm.websphere.APPCLIENT.v85_8.5.5015.20190128_1828
+com.ibm.websphere.APPCLIENTILAN.v85_8.5.5015.20190128_1828
+com.ibm.websphere.IHS.v85_8.5.5015.20190128_1828
+com.ibm.websphere.IHSILAN.v85_8.5.5015.20190128_1828
+com.ibm.websphere.PLG.v85_8.5.5015.20190128_1828
+com.ibm.websphere.PLGILAN.v85_8.5.5015.20190128_1828
+com.ibm.websphere.PLUGCLIENT.v85_8.5.5015.20190128_1828
+com.ibm.websphere.PLUGCLIENTILAN.v85_8.5.5015.20190128_1828
+
+
+===============================================================================================================================================================
+
+root@ofsaa-appclient0204:/backup/indas/IBM_binaries/IM/tools# ./imcl install com.ibm.websphere.ND.v85_8.5.5000.20130514_1044 -repositories /backup/indas/IBM_binaries/WASND8.5/  -installationDirectory "/export/home/wasadmin/IBM/WebSphere/AppServer" -acceptLicense -sP
+                 25%                50%                75%                100%
+------------------|------------------|------------------|------------------|
+............................................................................
+Installed com.ibm.websphere.ND.v85_8.5.5000.20130514_1044 to the /export/home/wasadmin/IBM/WebSphere/AppServer directory.
+
+./manageprofiles.sh -create -profileName Appsrv01 -profilePath "/export/home/wasadmin/IBM/WebSphere/AppServer/profiles/Appsrv01"  -templatePath /export/home/wasadmin/IBM/WebSphere/AppServer/profileTemplates/default
+
+
+root@ofsaa-appclient0204:/export/home/wasadmin/IBM/WebSphere/AppServer/bin# ./manageprofiles.sh -create -profileName Appsrv01 -profilePath "/export/home/wasadmin/IBM/WebSphere/AppServer/profiles/Appsrv01"  -templatePath /export/home/wasadmin/IBM/WebSphere/AppServer/profileTemplates/default
+INSTCONFSUCCESS: Success: Profile Appsrv01 now exists. Please consult /export/home/wasadmin/IBM/WebSphere/AppServer/profiles/Appsrv01/logs/AboutThisProfile.txt for more information about this profile.
+
+
+
+root@ofsaa-appclient0204:/backup/indas/IBM_binaries/IM/tools# ./imcl listAvailablePackages -repositories /backup/indas/IBM_binaries/WAS15/
+com.ibm.websphere.BASE.v85_8.5.5015.20190128_1828
+com.ibm.websphere.BASETRIAL.v85_8.5.5015.20190128_1828
+com.ibm.websphere.DEVELOPERS.v85_8.5.5015.20190128_1828
+com.ibm.websphere.DEVELOPERSILAN.v85_8.5.5015.20190128_1828
+com.ibm.websphere.EXPRESS.v85_8.5.5015.20190128_1828
+com.ibm.websphere.EXPRESSTRIAL.v85_8.5.5015.20190128_1828
+com.ibm.websphere.ND.v85_8.5.5015.20190128_1828
+com.ibm.websphere.NDDMZ.v85_8.5.5015.20190128_1828
+com.ibm.websphere.NDDMZTRIAL.v85_8.5.5015.20190128_1828
+com.ibm.websphere.NDTRIAL.v85_8.5.5015.20190128_1828
+
+root@ofsaa-appclient0204:/backup/indas/IBM_binaries/IM/tools# ./imcl install com.ibm.websphere.ND.v85_8.5.5015.20190128_1828 -repositories /backup/indas/IBM_binaries/WAS15/  -installationDirectory "/export/home/wasadmin/IBM/WebSphere/AppServer" -acceptLicense -sP
+                 25%                50%                75%                100%
+------------------|------------------|------------------|------------------|
+............................................................................
+Updated to com.ibm.websphere.ND.v85_8.5.5015.20190128_1828 in the /export/home/wasadmin/IBM/WebSphere/AppServer directory.
+
+
+
+
+
+
+./manageprofiles.sh -create -profileName Appsrv01 -profilePath "/export/home/wasadmin/IBM/WebSphere/AppServer/profiles/Appsrv01"  -templatePath /export/home/wasadmin/IBM/WebSphere/AppServer/profileTemplates/default
+
+
+
+
+./imcl install com.ibm.websphere.IHS.v85_8.5.5015.20190128_1828 -repositories /backup/indas/IBM_binaries/IHS15/  -installationDirectory "/export/home/wasadmin/IHS/Httpserver/" -acceptLicense –sP
+
+
+./imcl install com.ibm.websphere.PLG.v85_8.5.5015.20190128_1828 -repositories /backup/indas/IBM_binaries/IHS15/  -installationDirectory "/export/home/wasadmin/IHS/Plugins/" -acceptLicense –sP
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

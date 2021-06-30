@@ -1,0 +1,6 @@
+
+Sandip Das
+1 year ago
+For DevOps you will need Linux skills (with scripting knowledge), server troubleshooting, CI/CD and more skills, but that you have to work most of the time with Leading Cloud platforms like "gcp or azure or aws". Here are a few articles which you can follow to know what skills you might need:
+https://medium.com/@devfire/how-to-become-a-devops-engineer-in-six-months-or-less-366097df7737
+https://medium.com/hackernoon/the-2018-devops-roadmap-31588d8670cb
